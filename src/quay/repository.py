@@ -171,10 +171,11 @@ class QuayRepository(object):
             }
 
         Response Messages:
-            201 - Successful creation
+            200 - Successful invocation
         """
         url = self._repo_url(repo)
         response = self.rest.put(url)
+
         if response.status_code is not 200:
             self.module.fail_json(msg=response.json)
         return response.info
