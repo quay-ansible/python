@@ -37,7 +37,7 @@ class QuayMirror(QuayRepository):
         response = self.rest.post(url)
 
         if response.status_code is not 201:
-            self.module.fail_json(msg=response.json)
+            self.module.fail_json(msg=response.info)
         return response.info
 
     def fetch_mirror(self, repo, body):
@@ -55,7 +55,7 @@ class QuayMirror(QuayRepository):
         response = self.rest.get(url)
 
         if response.status_code is not 200:
-            self.module.fail_json(msg=response.json)
+            self.module.fail_json(msg=response.info)
         return response.info
 
     def update_mirror(self, repo, body):
@@ -76,7 +76,7 @@ class QuayMirror(QuayRepository):
                 },
                 external_registry_username: "string",
                 external_registry_password: "string",
-                location: "string",
+                external_reference: "string",
                 sync_start_date: "iso8601",
                 root_rule: {
                     rule_type: "TAG_GLOB_CSV",
@@ -93,5 +93,5 @@ class QuayMirror(QuayRepository):
         response = self.rest.put(url)
 
         if response.status_code is not 200:
-            self.module.fail_json(msg=response.json)
+            self.module.fail_json(msg=response.info)
         return response.info

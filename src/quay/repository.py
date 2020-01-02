@@ -129,7 +129,7 @@ class QuayRepository(object):
         response = self.rest.delete(url)
 
         if response.status_code is not 204:
-            self.module.fail_json(msg=response.json)
+            self.module.fail_json(msg=response.info)
         return response.info
 
     def exists(self, repo):
@@ -177,5 +177,5 @@ class QuayRepository(object):
         response = self.rest.put(url)
 
         if response.status_code is not 200:
-            self.module.fail_json(msg=response.json)
+            self.module.fail_json(msg=response.info)
         return response.info
